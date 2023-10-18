@@ -16,6 +16,49 @@ class LibraryTest {
     @Test fun fizzbuzzToTwelve() {
         assertEquals("FIZZBUZZFIZZFIZZBUZZFIZZ", fizzbuzz(1..12))
     }
+    @Test fun fizzbuzzToFifty() {
+        assertEquals("FIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZFIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZFIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZFIZZBUZZ", fizzbuzz(1..50))
+    }
+    @Test fun fizzbuzzToHundred() {
+        assertEquals("FIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZFIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZFIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZFIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZFIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZFIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZFIZZBUZZFIZZFIZZBUZZ", fizzbuzz(1..100))
+    }
+
+   
+    @Test fun fizzbuzzdohToSeven() {
+        assertEquals("FIZZBUZZFIZZDOH!", fizzbuzzdoh(1..7))
+    }
+    @Test fun fizzbuzzdohToTwelve() {
+        assertEquals("FIZZBUZZFIZZDOH!FIZZBUZZFIZZ", fizzbuzzdoh(1..12))
+    }
+    @Test fun fizzbuzzdohToFifteen() {
+        assertEquals("FIZZBUZZFIZZDOH!FIZZBUZZFIZZDOH!FIZZBUZZ", fizzbuzzdoh(1..15))
+    }
+    @Test fun fizzbuzzdohToFifty() {
+        assertEquals("FIZZBUZZFIZZDOH!FIZZBUZZFIZZDOH!FIZZBUZZFIZZBUZZFIZZDOH!FIZZBUZZFIZZDOH!FIZZBUZZFIZZBUZZDOH!FIZZFIZZBUZZFIZZDOH!FIZZBUZZFIZZDOH!BUZZ", fizzbuzzdoh(1..50))
+    }
+    
+    @Test fun fizzbuzzgenStandard() {
+        val lam = fizzbuzzgen(mapOf(3 to "FIZZ",5 to "BUZZ"))
+        assertEquals("FIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZ", lam(1..15))
+        assertEquals("FIZZBUZZFIZZFIZZBUZZFIZZ", lam(1..12))
+        assertEquals("FIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZFIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZFIZZBUZZFIZZFIZZBUZZFIZZFIZZBUZZFIZZBUZZ", lam(1..50))
+    }
+
+    @Test fun fizzbuzzgenBuckWild() {
+        val lam = fizzbuzzgen(mapOf(7 to "BUCK", 11 to "WILD", 22 to "MAN"))
+        assertEquals("BUCKWILD", lam(1..12))
+        assertEquals("BUCKWILDBUCKBUCKWILDMAN", lam(1..22))
+        assertEquals("BUCKWILDBUCKBUCKWILDMANBUCKWILDBUCKBUCKWILDMANBUCK", lam(1..50))
+        assertEquals("WILDBUCKBUCKWILDMANBUCKBUCKWILDBUCKWILDMANBUCKBUCKWILD", lam(50..100))
+    }
+
+    @Test fun fizzbuzzgenTwoFourTen() {
+        val lam = fizzbuzzgen(mapOf(2 to "TWO", 4 to "FOUR", 10 to "TEN"))
+        assertEquals("TWOTWOFOUR", lam(1..4))
+        assertEquals("TWOTWOFOURTWOTEN", lam(6..10))
+        assertEquals("TWOTENTWOFOURTWOTWOFOURTWOTWOFOURTEN", lam(10..20))
+        assertEquals("TWOFOURTWOTWOFOURTWOTENTWOFOURTWOTWOFOURTWOTWOFOURTENTWOTWOFOURTWOTWOFOURTWOTENTWOFOURTWOTWOFOUR", lam(44..76))
+    }
 
     @Test fun r1Test() {
         assertEquals(">>> FOO: {BAR}", r1())

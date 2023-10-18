@@ -22,6 +22,37 @@ val fizzbuzz : (IntRange) -> String = {
     }.fold(""){left, right -> left + right}
 }
 
+val fizzbuzzdoh : (IntRange) -> String = { 
+    nums -> nums.map{
+        a -> var fiz = ""
+            if(a % 3 == 0){
+                fiz += "FIZZ"
+            } 
+            if(a % 5 == 0){
+                fiz += "BUZZ"
+            }
+            if(a % 7 == 0){
+                fiz += "DOH!"
+            }
+            fiz
+    }.fold(""){left, right -> left + right}
+}
+
+fun fizzbuzzgen(map : Map<Int, String>) : (IntRange) -> String {
+    val lam : (IntRange) -> String = {
+        nums -> nums.map{
+            a -> var fiz = ""
+                map.forEach { entry ->
+                    if(a % entry.key == 0){
+                        fiz += entry.value
+                    }
+                }
+                fiz
+        }.fold(""){left, right -> left + right}
+    }
+    return lam
+}
+
 // Example usage
 /*
 if (fizzbuzz(0..1) == "")
